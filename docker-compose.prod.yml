@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+     context: ./moutarde-front
+     dockerfile: Dockerfile.prod
+    ports:
+     - "80:80"
+    container_name: moutarde-frontend-prod
+    restart: unless-stopped
