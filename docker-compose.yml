@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+     context: ./moutarde-front
+     dockerfile: Dockerfile.dev
+    ports:
+     - "5180:5180"
+    volumes:
+      - ./moutarde-front:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
