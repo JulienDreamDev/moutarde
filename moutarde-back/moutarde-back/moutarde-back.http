@@ -1,0 +1,6 @@
+@moutarde_back_HostAddress = http://localhost:5277
+
+GET {{moutarde_back_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
