@@ -5,8 +5,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-🚧 **Work in Progress** - Building in public!
-
 ## 🎯 Project Goals
 
 This project is a learning exercise to:
@@ -36,6 +34,40 @@ This project is a learning exercise to:
 - GitHub Actions (CI/CD)
 - Nginx (reverse proxy)
 
+## How to build / run
+
+### Development (Docker Compose)
+```bash
+docker compose up --build
+```
+
+Services:
+- Frontend: http://localhost:5180
+- Backend: http://localhost:5181
+- Postgres: localhost:5432
+
+Stop:
+```bash
+docker compose down
+```
+
+### Production (Docker Compose)
+Create file [.env.prod](.env.prod) with all needed variables before start up:
+```bash
+POSTGRES_DB=...
+POSTGRES_USER=...
+POSTGRES_PASSWORD=...
+```
+
+```bash
+docker compose -f docker-compose.prod.yml --env-file .env.prod up --build
+```
+
+Stop:
+```bash
+docker compose -f docker-compose.prod.yml down
+```
+
 ## 🚀 Planned Features
 
 - [x] Project setup
@@ -61,9 +93,7 @@ Todo
 
 ## 🚧 Current Status
 
-**Day 0** - Setting up project structure and planning
-
-Follow progress: [GitHub Issues](https://github.com/JulienDreamDev/mini-x/issues)
+Follow progress: [GitHub Issues](https://github.com/JulienDreamDev/moutarde/issues)
 
 ## 📝 License
 
