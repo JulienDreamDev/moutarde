@@ -33,6 +33,11 @@ public class Program
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+
+            // To proceed with migrations even in docker containers
+            using var scope = app.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<MoutardeDbContext>();
+            dbContext.Database.Migrate();
         }
         else // Only use HTTPS in prod.
         {
