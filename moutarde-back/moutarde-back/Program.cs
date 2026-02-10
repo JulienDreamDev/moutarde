@@ -39,10 +39,22 @@ public class Program
             app.UseHttpsRedirection();
         }
         
-        // To proceed with migrations even in docker containers
         using var scope = app.Services.CreateScope();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
         var dbContext = scope.ServiceProvider.GetRequiredService<MoutardeDbContext>();
-        dbContext.Database.Migrate();
+        
+        try
+        {
+            // To proceed with migrations even in docker containers
+            logger.LogInformation("Migrating the database...");
+            dbContext.Database.Migrate();
+            logger.LogInformation("Database is successfully migrated.");
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "An error occurred while migrating the database.");
+            throw;
+        }
 
         app.UseAuthorization();
         app.MapControllers();
