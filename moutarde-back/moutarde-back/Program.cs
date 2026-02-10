@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using moutarde_back.Data;
+
 namespace moutarde_back;
 
 public class Program
@@ -5,6 +8,9 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        
+        // Configurations
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
         // Add services to the container.
         builder.Services.AddControllers();
@@ -18,6 +24,7 @@ public class Program
                 Description = "Mini Social Network"
             });
         });
+        builder.Services.AddDbContext<MoutardeDbContext>(options => options.UseNpgsql(connectionString));
 
         var app = builder.Build();
 
