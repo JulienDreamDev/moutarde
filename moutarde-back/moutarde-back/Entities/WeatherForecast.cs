@@ -1,4 +1,4 @@
-namespace moutarde_back;
+namespace moutarde_back.Entities;
 
 public class WeatherForecast
 {

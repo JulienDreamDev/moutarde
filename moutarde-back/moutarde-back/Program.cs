@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using moutarde_back.Data;
+using moutarde_back.Infrastructure.Data;
 
 namespace moutarde_back;
 
@@ -37,6 +37,23 @@ public class Program
         else // Only use HTTPS in prod.
         {
             app.UseHttpsRedirection();
+        }
+        
+        using var scope = app.Services.CreateScope();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        var dbContext = scope.ServiceProvider.GetRequiredService<MoutardeDbContext>();
+        
+        try
+        {
+            // To proceed with migrations even in docker containers
+            logger.LogInformation("Migrating the database...");
+            dbContext.Database.Migrate();
+            logger.LogInformation("Database is successfully migrated.");
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "An error occurred while migrating the database.");
+            throw;
         }
 
         app.UseAuthorization();
