@@ -11,3 +11,9 @@ To stop those services:
 ```bash
 docker compose down
 ```
+
+## Documentation
+
+The API documentation is available via Swagger at:
+
+- http://localhost:5181/swagger
