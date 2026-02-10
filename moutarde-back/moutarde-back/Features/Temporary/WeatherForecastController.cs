@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace moutarde_back.Controllers;
+namespace moutarde_back.Features.Temporary;
 
 [ApiController]
 [Route("[controller]")]

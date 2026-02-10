@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using moutarde_back.Data;
+using moutarde_back.Infrastructure.Data;
 
 namespace moutarde_back;
 
