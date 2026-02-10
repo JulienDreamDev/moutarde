@@ -19,14 +19,13 @@ public class Program
         {
             app.MapOpenApi();
         }
-
-        app.UseHttpsRedirection();
+        else // Only use HTTPS in prod.
+        {
+            app.UseHttpsRedirection();
+        }
 
         app.UseAuthorization();
-
-
         app.MapControllers();
-
         app.Run();
     }
 }

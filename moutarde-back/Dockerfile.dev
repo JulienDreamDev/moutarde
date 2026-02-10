@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0
+
+WORKDIR /app
+
+COPY *.sln ./
+
+COPY moutarde-back/*.csproj ./moutarde-back/
+
+RUN dotnet restore
+
+COPY . .
+
+EXPOSE 5181
+
+ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+
+WORKDIR /app/moutarde-back
+
+CMD ["dotnet", "watch", "run", "-c", "Debug", "--no-restore", "--urls", "http://0.0.0.0:5181"]
