@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "moutarde-back", "moutarde-back\moutarde-back.csproj", "{64AEE6DE-2D87-417C-B9C6-6EBD96C19FA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "moutarde-tests", "moutarde-tests\moutarde-tests.csproj", "{1938A458-633E-44AA-B86E-0DDD3CEB6926}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{64AEE6DE-2D87-417C-B9C6-6EBD96C19FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64AEE6DE-2D87-417C-B9C6-6EBD96C19FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64AEE6DE-2D87-417C-B9C6-6EBD96C19FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1938A458-633E-44AA-B86E-0DDD3CEB6926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1938A458-633E-44AA-B86E-0DDD3CEB6926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1938A458-633E-44AA-B86E-0DDD3CEB6926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1938A458-633E-44AA-B86E-0DDD3CEB6926}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
