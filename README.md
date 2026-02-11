@@ -16,7 +16,7 @@ This project is a learning exercise to:
 ## 🛠️ Tech Stack
 
 ### Backend
-- ASP.NET Core 8 (Web API)
+- ASP.NET Core (Web API)
 - Entity Framework Core
 - PostgreSQL
 - JWT Authentication
