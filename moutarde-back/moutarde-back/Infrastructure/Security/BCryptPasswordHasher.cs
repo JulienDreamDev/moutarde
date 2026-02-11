@@ -6,11 +6,26 @@ public class BCryptPasswordHasher : IPasswordHasher
 {
     public string Hash(string password)
     {
+        if (string.IsNullOrWhiteSpace(password))
+        {
+            throw new ArgumentException("Password cannot be empty", nameof(password));
+        }
+        
         return BCrypt.HashPassword(password);
     }
 
     public bool Verify(string password, string hash)
     {
+        if (string.IsNullOrWhiteSpace(password))
+        {
+            throw new ArgumentException("Password cannot be empty", nameof(password));
+        }
+
+        if (string.IsNullOrWhiteSpace(hash))
+        {
+            throw new ArgumentException("Hash cannot be empty", nameof(hash));
+        }
+        
         try
         {
             return BCrypt.Verify(password, hash);
