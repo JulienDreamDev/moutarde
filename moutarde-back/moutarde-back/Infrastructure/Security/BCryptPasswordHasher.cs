@@ -4,12 +4,12 @@ using BCrypt.Net;
 
 public class BCryptPasswordHasher : IPasswordHasher
 {
-    public static string Hash(string password)
+    public string Hash(string password)
     {
         return BCrypt.HashPassword(password);
     }
 
-    public static bool Verify(string password, string hash)
+    public bool Verify(string password, string hash)
     {
         return BCrypt.Verify(password, hash);
     }
