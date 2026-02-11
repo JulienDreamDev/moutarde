@@ -12,6 +12,13 @@ To stop those services:
 docker compose down
 ```
 
+## Tests
+
+Run tests from this directory (not the repository root):
+```bash
+dotnet test
+```
+
 ## Documentation
 
 The API documentation is available via Swagger at:
