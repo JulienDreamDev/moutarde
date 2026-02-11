@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using moutarde_back.Infrastructure.Data;
+using moutarde_back.Infrastructure.Security;
 
 namespace moutarde_back;
 
@@ -25,6 +26,7 @@ public class Program
             });
         });
         builder.Services.AddDbContext<MoutardeDbContext>(options => options.UseNpgsql(connectionString));
+        builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
 
         var app = builder.Build();
 

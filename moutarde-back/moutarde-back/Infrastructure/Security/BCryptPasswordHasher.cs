@@ -11,6 +11,13 @@ public class BCryptPasswordHasher : IPasswordHasher
 
     public bool Verify(string password, string hash)
     {
-        return BCrypt.Verify(password, hash);
+        try
+        {
+            return BCrypt.Verify(password, hash);
+        }
+        catch (SaltParseException) // This exception is thrown when the hash is not in the correct format (e.g., not a valid bcrypt hash)
+        {
+            return false;
+        }
     }
 }

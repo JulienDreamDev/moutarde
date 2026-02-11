@@ -25,7 +25,7 @@ public class UnitTest1
     }
     
     [Fact]
-    public void PasswordVerificationFailedTest()
+    public void PasswordVerificationIncorrectPasswordTest()
     {
         IPasswordHasher passwordHasher = new BCryptPasswordHasher();
         string password = "password123";
@@ -33,5 +33,14 @@ public class UnitTest1
         string hash = passwordHasher.Hash(password);
 
         Assert.False(passwordHasher.Verify(wrongPassword, hash));
+    }
+    
+    [Fact]
+    public void PasswordVerificationIncorrectHashTest()
+    {
+        IPasswordHasher passwordHasher = new BCryptPasswordHasher();
+        string password = "password123";
+        
+        Assert.False(passwordHasher.Verify(password, "hash"));
     }
 }
