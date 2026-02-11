@@ -2,45 +2,44 @@
 
 namespace moutarde_tests;
 
-public class UnitTest1
+public class PasswordHasher
 {
+    private readonly IPasswordHasher _hasher = new BCryptPasswordHasher();
+    
     [Fact]
-    public void PasswordHasBeenHashedTest()
+    public void Hash_PasswordHasBeenHashed()
     {
-        IPasswordHasher passwordHasher = new BCryptPasswordHasher();
-        string password = "password123";
-        string hash = passwordHasher.Hash(password);
+        const string password = "password123";
+        var hash = _hasher.Hash(password);
 
         Assert.NotEqual(password, hash);
     }
     
     [Fact]
-    public void PasswordVerificationTest()
+    public void Verify_PasswordMatchHash()
     {
-        IPasswordHasher passwordHasher = new BCryptPasswordHasher();
-        string password = "password123";
-        string hash = passwordHasher.Hash(password);
+        const string password = "password123";
+        var hash = _hasher.Hash(password);
 
-        Assert.True(passwordHasher.Verify(password, hash));
+        Assert.True(_hasher.Verify(password, hash));
     }
     
     [Fact]
-    public void PasswordVerificationIncorrectPasswordTest()
+    public void Verify_PasswordShouldNotMatchHash()
     {
-        IPasswordHasher passwordHasher = new BCryptPasswordHasher();
-        string password = "password123";
-        string wrongPassword = "wrongpassword";
-        string hash = passwordHasher.Hash(password);
+        const string password = "password123";
+        const string wrongPassword = "wrongpassword";
+        var hash = _hasher.Hash(password);
 
-        Assert.False(passwordHasher.Verify(wrongPassword, hash));
+        Assert.False(_hasher.Verify(wrongPassword, hash));
     }
     
     [Fact]
-    public void PasswordVerificationIncorrectHashTest()
+    public void Verify_InvalidHash()
     {
-        IPasswordHasher passwordHasher = new BCryptPasswordHasher();
-        string password = "password123";
+        const string password = "password123";
+        const string hash = "invalidhash";
         
-        Assert.False(passwordHasher.Verify(password, "hash"));
+        Assert.False(_hasher.Verify(password, hash));
     }
 }
