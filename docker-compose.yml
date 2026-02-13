@@ -22,6 +22,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:5181
       - ConnectionStrings__DefaultConnection=Host=database;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+      - JWT__SECRET=${JWT_SECRET}
+      - JWT__ISSUER=${JWT_ISSUER}
+      - JWT__AUDIENCE=${JWT_AUDIENCE}
+      - JWT__EXPIRATION_HOURS=${JWT_EXPIRATION_HOURS}
     ports:
       - "5181:5181"
     volumes:

@@ -4,7 +4,7 @@ WORKDIR /src
 
 COPY *.sln ./
 COPY moutarde-back/*.csproj ./moutarde-back/
-RUN dotnet restore
+RUN dotnet restore ./moutarde-back/moutarde-back.csproj
 
 COPY . .
 WORKDIR /src/moutarde-back

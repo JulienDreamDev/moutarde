@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using moutarde_back.Infrastructure.Data;
 
@@ -8,6 +9,7 @@ namespace moutarde_back.Features.Temporary;
 public class DbTestController(MoutardeDbContext dbContext) : ControllerBase
 {
     [HttpGet(Name = "GetDbTest")]
+    [Authorize]
     public async Task<IActionResult> Get()
     {
         try
