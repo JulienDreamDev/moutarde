@@ -44,6 +44,7 @@ public class Program
         });
         
         builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+        builder.Services.AddScoped<ITokenService, JwtTokenService>();
         
         builder.Services.AddAuthorization();
 
