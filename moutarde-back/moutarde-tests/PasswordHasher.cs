@@ -1,5 +1,4 @@
 ﻿using moutarde_back.Infrastructure.Security;
-using Xunit.Abstractions;
 
 namespace moutarde_tests;
 
