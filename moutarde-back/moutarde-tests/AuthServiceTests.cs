@@ -43,7 +43,7 @@ public class AuthServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task RegisterAsync_RegisterUser_ShouldCreateUserAndReturnAuthResponse()
+    public async Task RegisterAsync_ShouldCreateUserAndReturnAuthResponse()
     {
         var request = new RegisterRequest()
         {
@@ -69,7 +69,7 @@ public class AuthServiceTests : IDisposable
     }
     
     [Fact]
-    public async Task RegisterAsync_RegisterUserWithExistingEmail_ShouldThrow()
+    public async Task RegisterAsync_RegisterWithExistingEmail_ShouldThrow()
     {
         var request = new RegisterRequest()
         {
@@ -107,6 +107,60 @@ public class AuthServiceTests : IDisposable
         _passwordHasher.Setup(h => h.Hash(request.Password)).Returns(hash);
         
         await Assert.ThrowsAsync<ArgumentException>(async () => await _authService.RegisterAsync(request));
+    }
+    
+    [Fact]
+    public async Task LoginAsync_ShouldLoginUserAndReturnAuthResponse()
+    {
+        var request = new LoginRequest()
+        {
+            Email = "test@email.com",
+            Password = "testPassword"
+        };
+        
+        _passwordHasher.Setup(h => h.Verify(request.Password, "validHash")).Returns(true);
+        _tokenService.Setup(ts => ts.GenerateToken(It.IsAny<User>())).Returns("fakeToken");
+        
+        var existingUser = User.Create(username: "existingUser", email: request.Email, passwordHash: "validHash");
+        await _context.Users.AddAsync(existingUser);
+        await _context.SaveChangesAsync();
+        
+        var response = await _authService.LoginAsync(request);
+
+        Assert.NotNull(response);
+        Assert.Equal("fakeToken", response.Token);
+        Assert.Equal(request.Email, response.User.Email);
+        Assert.Equal(existingUser.Username, response.User.Username);
+    }
+    
+    [Fact]
+    public async Task LoginAsync_EmailNotFound_ShouldThrow()
+    {
+        var request = new LoginRequest()
+        {
+            Email = "test@email.com",
+            Password = "testPassword"
+        };
+        
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(async () => await _authService.LoginAsync(request));
+    }
+    
+    [Fact]
+    public async Task LoginAsync_WrongPassword_ShouldThrow()
+    {
+        var request = new LoginRequest()
+        {
+            Email = "test@email.com",
+            Password = "testPassword"
+        };
+        
+        _passwordHasher.Setup(h => h.Verify(request.Password, "validHash")).Returns(false);
+         
+        var existingUser = User.Create(username: "existingUser", email: request.Email, passwordHash: "validHash");
+        await _context.Users.AddAsync(existingUser);
+        await _context.SaveChangesAsync();
+        
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(async () => await _authService.LoginAsync(request));
     }
 
     public void Dispose()
