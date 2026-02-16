@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using moutarde_back.Features.Auth;
 using moutarde_back.Infrastructure.Data;
 using moutarde_back.Infrastructure.Security;
 
@@ -45,6 +46,7 @@ public class Program
         
         builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
         builder.Services.AddScoped<ITokenService, JwtTokenService>();
+        builder.Services.AddScoped<IAuthService, AuthService>();
         
         builder.Services.AddAuthorization();
 

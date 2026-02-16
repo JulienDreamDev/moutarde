@@ -2,7 +2,7 @@
 
 namespace moutarde_tests;
 
-public class PasswordHasher
+public class PasswordHasherTests
 {
     private readonly IPasswordHasher _hasher = new BCryptPasswordHasher();
     
