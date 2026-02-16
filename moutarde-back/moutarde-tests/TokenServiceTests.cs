@@ -5,14 +5,14 @@ using moutarde_back.Infrastructure.Security;
 
 namespace moutarde_tests;
 
-public class TokenService
+public class TokenServiceTests
 {
     private readonly ITokenService _tokenService;
     private const string Issuer = "test_issuer";
     private const string Audience = "test_audience";
     private const int ExpirationHours = 24;
 
-    public TokenService()
+    public TokenServiceTests()
     {
         var settings = new Dictionary<string, string>()
         {
