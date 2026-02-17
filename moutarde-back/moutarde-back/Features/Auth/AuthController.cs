@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using moutarde_back.Features.Auth.DTOs;
 
@@ -45,5 +47,27 @@ public class AuthController(IAuthService authService) : ControllerBase
         {
             return StatusCode(500, new { error = "An unexpected error occured!" });
         }
+    }
+
+    [HttpGet("me")]
+    [Authorize]
+    public IActionResult GetCurrentUser()
+    {
+        var uid = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+        var username = User.FindFirst(JwtRegisteredClaimNames.UniqueName)?.Value;
+        var email = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+
+        if (uid is null || username is null || email is null)
+        {
+            return Unauthorized(new { error = "Invalid token claims." });
+        }
+        
+        return Ok(new
+        {
+            uid,
+            username,
+            email,
+            message = "You are authenticated"
+        });
     }
 }
