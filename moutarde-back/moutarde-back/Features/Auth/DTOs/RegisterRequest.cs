@@ -1,8 +1,8 @@
 namespace moutarde_back.Features.Auth.DTOs;
 
-public class RegisterRequest
+public record RegisterRequest
 {
-    public required string Email;
-    public required string Username;
-    public required string Password;
+    public required string Email { get; init; }
+    public required string Username { get; init; }
+    public required string Password { get; init; }
 }
