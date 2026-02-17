@@ -27,7 +27,7 @@ public class JwtTokenService(IConfiguration configuration) : ITokenService
             issuer: configuration["Jwt:Issuer"],
             audience: configuration["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(int.Parse(configuration["Jwt:ExpirationHours"]!)),
+            expires: DateTime.UtcNow.AddHours(int.Parse(configuration["Jwt:Expiration_Hours"]!)),
             signingCredentials: cred
             );
         
