@@ -28,4 +28,22 @@ public class AuthController(IAuthService authService) : ControllerBase
             return StatusCode(500, new { error = e.Message });
         }
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        try
+        {
+            var response = await authService.LoginAsync(request);
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException e)
+        {
+            return Unauthorized(new { error = e.Message });
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, new { error = e.Message });
+        }
+    }
 }
