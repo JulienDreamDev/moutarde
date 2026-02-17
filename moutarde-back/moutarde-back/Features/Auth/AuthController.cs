@@ -25,7 +25,7 @@ public class AuthController(IAuthService authService) : ControllerBase
         {
             return BadRequest(new { error = e.Message });
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return StatusCode(500, new { error = "An unexpected error occured!" });
         }
@@ -43,7 +43,7 @@ public class AuthController(IAuthService authService) : ControllerBase
         {
             return Unauthorized(new { error = e.Message });
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return StatusCode(500, new { error = "An unexpected error occured!" });
         }
