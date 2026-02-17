@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using moutarde_back.Features.Auth.DTOs;
@@ -53,9 +54,9 @@ public class AuthController(IAuthService authService) : ControllerBase
     [Authorize]
     public IActionResult GetCurrentUser()
     {
-        var uid = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
-        var username = User.FindFirst(JwtRegisteredClaimNames.UniqueName)?.Value;
-        var email = User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+        var uid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var username = User.FindFirst(ClaimTypes.Name)?.Value;
+        var email = User.FindFirst(ClaimTypes.Email)?.Value;
 
         if (uid is null || username is null || email is null)
         {
