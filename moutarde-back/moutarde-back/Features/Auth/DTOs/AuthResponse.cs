@@ -2,6 +2,6 @@ namespace moutarde_back.Features.Auth.DTOs;
 
 public record AuthResponse
 {
-    public required string Token;
-    public required UserDto User;
+    public required string Token { get ; init; }
+    public required UserDto User { get; init;  }
 }
