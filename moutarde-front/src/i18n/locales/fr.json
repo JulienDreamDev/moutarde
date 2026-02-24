@@ -1,5 +1,10 @@
 {
   "common": {
     "welcome": "Bienvenue!"
+  },
+  "language": {
+    "english": "Anglais",
+    "french": "Français",
+    "toggle": "Passer en {{language}}"
   }
 }
