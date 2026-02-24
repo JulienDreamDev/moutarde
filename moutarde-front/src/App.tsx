@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { t, i18n } = useTranslation();
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
@@ -25,7 +27,8 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6">
+      <h1>{t("common.welcome")}</h1>
       <button
         className="bg-moutarde-600 hover:bg-moutarde-500 rounded-lg px-8 py-3 font-semibold text-white transition-colors"
         onClick={toggleTheme}
