@@ -1,0 +1,10 @@
+{
+  "common": {
+    "welcome": "Hello World!"
+  },
+  "language": {
+    "english": "English",
+    "french": "French",
+    "toggle": "Switch to {{language}}"
+  }
+}

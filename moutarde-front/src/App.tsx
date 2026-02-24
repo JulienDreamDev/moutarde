@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { t, i18n } = useTranslation();
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
@@ -24,13 +26,28 @@ function App() {
     localStorage.setItem("theme", newTheme);
   };
 
+  const toggleLanguage = () => {
+    const newLanguage = i18n.language === "en" ? "fr" : "en";
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem("language", newLanguage);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6">
+      <h1 className="text-xl">{t("common.welcome")}</h1>
       <button
-        className="bg-moutarde-600 hover:bg-moutarde-500 rounded-lg px-8 py-3 font-semibold text-white transition-colors"
+        className="bg-moutarde-600 hover:bg-moutarde-500 cursor-pointer rounded-lg px-8 py-3 font-semibold text-white transition-colors"
         onClick={toggleTheme}
       >
         〽️ - Moutarde
+      </button>
+      <button
+        className="cursor-pointer text-sm hover:underline"
+        onClick={toggleLanguage}
+      >
+        {t("language.toggle", {
+          language: i18n.language === "en" ? "🇫🇷" : "🇬🇧",
+        })}
       </button>
     </div>
   );
