@@ -1,3 +1,6 @@
+import React from "react";
+import clsx from "clsx";
+
 export interface ButtonProps {
   variant?: "primary" | "secondary" | "danger" | "ghost";
   size?: "sm" | "md" | "lg";
@@ -15,12 +18,12 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
 }) => {
+  const style = clsx(
+    "bg-moutarde-600 hover:bg-moutarde-500 cursor-pointer rounded-lg px-8 py-3 font-semibold text-white transition-colors",
+  );
+
   return (
-    <button
-      className="bg-moutarde-600 hover:bg-moutarde-500 cursor-pointer rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={style} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );
