@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Button from "./components/Button";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -35,12 +36,7 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6">
       <h1 className="text-xl">{t("common.welcome")}</h1>
-      <button
-        className="bg-moutarde-600 hover:bg-moutarde-500 cursor-pointer rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-        onClick={toggleTheme}
-      >
-        〽️ - Moutarde
-      </button>
+      <Button onClick={toggleTheme}>〽️ - Moutarde</Button>
       <button
         className="cursor-pointer text-sm hover:underline"
         onClick={toggleLanguage}
