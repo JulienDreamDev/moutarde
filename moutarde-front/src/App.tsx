@@ -36,15 +36,14 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6">
       <h1 className="text-xl">{t("common.welcome")}</h1>
-      <Button onClick={toggleTheme}>〽️ - Moutarde</Button>
-      <button
-        className="cursor-pointer text-sm hover:underline"
-        onClick={toggleLanguage}
-      >
+      <Button onClick={toggleTheme} size="lg">
+        〽️ - Moutarde
+      </Button>
+      <Button onClick={toggleLanguage} variant="ghost" size="sm">
         {t("language.toggle", {
           language: i18n.language === "en" ? "🇫🇷" : "🇬🇧",
         })}
-      </button>
+      </Button>
     </div>
   );
 }
