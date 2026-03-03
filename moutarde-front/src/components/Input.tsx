@@ -1,4 +1,4 @@
-import react, { isValidElement, cloneElement } from "react";
+import React, { isValidElement, cloneElement } from "react";
 import clsx from "clsx";
 import { CircleX } from "lucide-react";
 
@@ -82,7 +82,7 @@ const Input: React.FC<InputProps> = ({
       </div>
       {error && (
         <p className="text-ketchup-500 mt-1 flex items-center gap-1 text-sm">
-          <CircleX size={16} className="text-ketchup-500" />
+          <CircleX size={13} className="text-ketchup-500" />
           {error}
         </p>
       )}

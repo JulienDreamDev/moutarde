@@ -6,5 +6,12 @@
     "english": "Anglais",
     "french": "Français",
     "toggle": "Passer en {{language}}"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Mot de passe",
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "invalid_email": "Adresse email invalide"
   }
 }

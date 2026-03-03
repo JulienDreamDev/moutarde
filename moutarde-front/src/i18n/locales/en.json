@@ -6,5 +6,12 @@
     "english": "English",
     "french": "French",
     "toggle": "Switch to {{language}}"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "invalid_email": "Invalid email address"
   }
 }

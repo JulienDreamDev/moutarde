@@ -43,10 +43,11 @@ function App() {
       </Button>
       <Input
         type="email"
-        placeholder="Placeholder"
-        label="Email"
+        placeholder={t("auth.email")}
+        label={t("auth.email")}
         leftIcon={<AtSign />}
-        helperText="Enter a valid email address"
+        helperText={t("auth.invalid_email")}
+        error={t("auth.invalid_email")}
       />
       <Button onClick={toggleLanguage} variant="ghost" size="sm">
         {t("language.toggle", {
