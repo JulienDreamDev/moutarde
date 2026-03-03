@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
 }) => {
   const style = clsx(
-    "flex gap-2 rounded-lg transition-colors active:scale-98",
+    "flex justify-center gap-2 rounded-lg transition-colors active:scale-98",
     variant === "primary" && "bg-moutarde-600 hover:bg-moutarde-700 text-white",
     variant === "secondary" &&
       "bg-neutral-600 font-semibold text-white hover:bg-neutral-700",
