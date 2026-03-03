@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "./components/Button";
+import Input from "./components/Input";
+import { AtSign } from "lucide-react";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -39,6 +41,13 @@ function App() {
       <Button onClick={toggleTheme} size="lg">
         〽️ - Moutarde
       </Button>
+      <Input
+        type="email"
+        placeholder="Placeholder"
+        label="Email"
+        leftIcon={<AtSign />}
+        helperText="Enter a valid email address"
+      />
       <Button onClick={toggleLanguage} variant="ghost" size="sm">
         {t("language.toggle", {
           language: i18n.language === "en" ? "🇫🇷" : "🇬🇧",

@@ -65,5 +65,6 @@
   body {
     @apply bg-neutral-50 text-neutral-900;
     @apply dark:bg-neutral-950 dark:text-neutral-50;
+    @apply selection:bg-moutarde-600;
   }
 }
